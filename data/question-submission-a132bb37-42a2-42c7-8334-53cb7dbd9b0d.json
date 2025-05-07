@@ -1,0 +1,82 @@
+{
+  "sessionId": "a132bb37-42a2-42c7-8334-53cb7dbd9b0d",
+  "startTime": "2025-05-07T16:35:46.282Z",
+  "submissions": {
+    "1": {
+      "questionId": 1,
+      "questionTitle": "Create a Counter Component",
+      "template": "react",
+      "submitted": true,
+      "submissionDate": "2025-05-07T16:35:45.714Z",
+      "files": {
+        "/styles.css": {
+          "code": "body {\n  font-family: sans-serif;\n  -webkit-font-smoothing: auto;\n  -moz-font-smoothing: auto;\n  -moz-osx-font-smoothing: grayscale;\n  font-smoothing: auto;\n  text-rendering: optimizeLegibility;\n  font-smooth: always;\n  -webkit-tap-highlight-color: transparent;\n  -webkit-touch-callout: none;\n}\n\nh1 {\n  font-size: 1.5rem;\n}"
+        },
+        "/App.js": {
+          "code": "export default function Counter() {\n  // TODO: Implement a counter that increments when the button is clicked\n  \n  return (\n    <div>\n      <h1>Counter: 1</h1>\n      <button>Increment</button>\n    </div>\n  );\n}"
+        },
+        "/index.js": {
+          "code": "import React, { StrictMode } from \"react\";\nimport { createRoot } from \"react-dom/client\";\nimport \"./styles.css\";\n\nimport App from \"./App\";\n\nconst root = createRoot(document.getElementById(\"root\"));\nroot.render(\n  <StrictMode>\n    <App />\n  </StrictMode>\n);"
+        },
+        "/public/index.html": {
+          "code": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Document</title>\n  </head>\n  <body>\n    <div id=\"root\"></div>\n  </body>\n</html>"
+        },
+        "/package.json": {
+          "code": "{\n  \"dependencies\": {\n    \"react\": \"^18.2.0\",\n    \"react-dom\": \"^18.2.0\",\n    \"react-scripts\": \"^5.0.0\"\n  },\n  \"main\": \"/index.js\",\n  \"devDependencies\": {}\n}"
+        }
+      }
+    },
+    "2": {
+      "questionId": 2,
+      "questionTitle": "Fetch and Display Data",
+      "template": "react",
+      "submitted": true,
+      "submissionDate": "2025-05-07T16:35:59.494Z",
+      "files": {
+        "/styles.css": {
+          "code": "body {\n  font-family: sans-serif;\n  -webkit-font-smoothing: auto;\n  -moz-font-smoothing: auto;\n  -moz-osx-font-smoothing: grayscale;\n  font-smoothing: auto;\n  text-rendering: optimizeLegibility;\n  font-smooth: always;\n  -webkit-tap-highlight-color: transparent;\n  -webkit-touch-callout: none;\n}\n\nh1 {\n  font-size: 1.5rem;\n}"
+        },
+        "/App.js": {
+          "code": "export default function DataFetcher() {\n  // TODO: Fetch data from https://jsonplaceholder.typicode.com/users\n  // and display it in a list\n  \n  return (\n    <div>\n      <h1>Userss</h1>\n      <ul>\n        {/* Display users here */}\n      </ul>\n    </div>\n  );\n}"
+        },
+        "/index.js": {
+          "code": "import React, { StrictMode } from \"react\";\nimport { createRoot } from \"react-dom/client\";\nimport \"./styles.css\";\n\nimport App from \"./App\";\n\nconst root = createRoot(document.getElementById(\"root\"));\nroot.render(\n  <StrictMode>\n    <App />\n  </StrictMode>\n);"
+        },
+        "/public/index.html": {
+          "code": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Document</title>\n  </head>\n  <body>\n    <div id=\"root\"></div>\n  </body>\n</html>"
+        },
+        "/package.json": {
+          "code": "{\n  \"dependencies\": {\n    \"react\": \"^18.2.0\",\n    \"react-dom\": \"^18.2.0\",\n    \"react-scripts\": \"^5.0.0\"\n  },\n  \"main\": \"/index.js\",\n  \"devDependencies\": {}\n}"
+        }
+      }
+    },
+    "3": {
+      "questionId": 3,
+      "questionTitle": "Todo List Application",
+      "template": "react-ts",
+      "submitted": true,
+      "submissionDate": "2025-05-07T16:40:15.765Z",
+      "files": {
+        "/styles.css": {
+          "code": "body {\n  font-family: sans-serif;\n  -webkit-font-smoothing: auto;\n  -moz-font-smoothing: auto;\n  -moz-osx-font-smoothing: grayscale;\n  font-smoothing: auto;\n  text-rendering: optimizeLegibility;\n  font-smooth: always;\n  -webkit-tap-highlight-color: transparent;\n  -webkit-touch-callout: none;\n}\n\nh1 {\n  font-size: 1.5rem;\n}"
+        },
+        "/tsconfig.json": {
+          "code": "{\n  \"include\": [\n    \"./**/*\"\n  ],\n  \"compilerOptions\": {\n    \"strict\": true,\n    \"esModuleInterop\": true,\n    \"lib\": [ \"dom\", \"es2015\" ],\n    \"jsx\": \"react-jsx\"\n  }\n}"
+        },
+        "/App.tsx": {
+          "code": "export default function TodoApp() {\n  // TODO: Implement a todo list with add, toggle, and delete functionality\n  // Use proper TypeScript interfaces\n  \n  return (\n    <div>\n      <h1>Todo Lists</h1>\n      <form>\n        <input type=\"text\" placeholder=\"Add a new task\" />\n        <button type=\"submit\">Add</button>\n      </form>\n      <ul>\n        {/* Display todos here */}\n      </ul>\n    </div>\n  );\n}"
+        },
+        "/index.tsx": {
+          "code": "import React, { StrictMode } from \"react\";\nimport { createRoot } from \"react-dom/client\";\nimport \"./styles.css\";\n\nimport App from \"./App\";\n\nconst root = createRoot(document.getElementById(\"root\"));\nroot.render(\n  <StrictMode>\n    <App />\n  </StrictMode>\n);"
+        },
+        "/public/index.html": {
+          "code": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Document</title>\n  </head>\n  <body>\n    <div id=\"root\"></div>\n  </body>\n</html>"
+        },
+        "/package.json": {
+          "code": "{\n  \"dependencies\": {\n    \"react\": \"^19.0.0\",\n    \"react-dom\": \"^19.0.0\",\n    \"react-scripts\": \"^4.0.0\"\n  },\n  \"devDependencies\": {\n    \"@types/react\": \"^19.0.0\",\n    \"@types/react-dom\": \"^19.0.0\",\n    \"typescript\": \"^4.0.0\"\n  },\n  \"main\": \"/index.tsx\"\n}"
+        }
+      }
+    }
+  },
+  "lastUpdated": "2025-05-07T16:40:16.677Z"
+}

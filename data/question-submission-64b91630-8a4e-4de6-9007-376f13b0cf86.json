@@ -1,0 +1,32 @@
+{
+  "sessionId": "64b91630-8a4e-4de6-9007-376f13b0cf86",
+  "startTime": "2025-05-07T16:43:28.336Z",
+  "submissions": {
+    "1": {
+      "questionId": 1,
+      "questionTitle": "Create a Counter Component",
+      "questionDescription": "Create a React component that increments a counter when a button is clicked.",
+      "template": "react",
+      "submitted": true,
+      "submissionDate": "2025-05-07T16:43:28.045Z",
+      "files": {
+        "/styles.css": {
+          "code": "body {\n  font-family: sans-serif;\n  -webkit-font-smoothing: auto;\n  -moz-font-smoothing: auto;\n  -moz-osx-font-smoothing: grayscale;\n  font-smoothing: auto;\n  text-rendering: optimizeLegibility;\n  font-smooth: always;\n  -webkit-tap-highlight-color: transparent;\n  -webkit-touch-callout: none;\n}\n\nh1 {\n  font-size: 1.5rem;\n}"
+        },
+        "/App.js": {
+          "code": "export default function Counter() {\n  // TODO: Implement a counter that increments when the button is clicked\n  \n  return (\n    <div>\n      <h1>Counter: 0</h1>\n      <button>Increments</button>\n    </div>\n  );\n}"
+        },
+        "/index.js": {
+          "code": "import React, { StrictMode } from \"react\";\nimport { createRoot } from \"react-dom/client\";\nimport \"./styles.css\";\n\nimport App from \"./App\";\n\nconst root = createRoot(document.getElementById(\"root\"));\nroot.render(\n  <StrictMode>\n    <App />\n  </StrictMode>\n);"
+        },
+        "/public/index.html": {
+          "code": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Document</title>\n  </head>\n  <body>\n    <div id=\"root\"></div>\n  </body>\n</html>"
+        },
+        "/package.json": {
+          "code": "{\n  \"dependencies\": {\n    \"react\": \"^18.2.0\",\n    \"react-dom\": \"^18.2.0\",\n    \"react-scripts\": \"^5.0.0\"\n  },\n  \"main\": \"/index.js\",\n  \"devDependencies\": {}\n}"
+        }
+      }
+    }
+  },
+  "lastUpdated": "2025-05-07T16:43:28.336Z"
+}
