@@ -108,11 +108,8 @@ const NodeCodeEditor = ({ customFiles = null, storageKey = 'node-sandpack-files'
         theme={sandpackDark}
         files={files}
         options={{
-          experimental_enableServiceWorker: true,
-          recompileMode: "delayed",
-          recompileDelay: 500,
-          autorun: false,
-          autoReload: false
+          autorun: true,
+          autoReload: true
         }}
       >
         <AutoSave storageKey={storageKey} />
@@ -165,8 +162,7 @@ const NodeCodeEditor = ({ customFiles = null, storageKey = 'node-sandpack-files'
               <div className="flex-1 text-center">Console</div>
             </div>
             <hr className="w-full border-t border-gray-700" />
-            <SandpackConsole style={{ height: '100%' }} 
-            />
+            <SandpackConsole  showRestartButton showHeader showResetConsoleButton showSyntaxError/>
           </div>
         </SandpackLayout>
       </SandpackProvider>

@@ -153,32 +153,32 @@ const codingQuestions: CodingQuestion[] = [
 }`
     }
   },
+//   {
+//     id: 4,
+//     title: "Algorithm: Array Manipulation",
+//     description: "Write a function that finds the two numbers in an array that add up to a target value.",
+//     difficulty: "Medium",
+//     category: "Algorithms",
+//     template: "node", // Single template
+//     starterCode: {
+//       '/index.js': `/**
+//  * @param {number[]} nums
+//  * @param {number} target
+//  * @return {number[]} - indices of the two numbers that add up to target
+//  */
+// function twoSum(nums, target) {
+//   // TODO: Implement the twoSum function
+  
+// }
+
+// // Test cases
+// console.log(twoSum([2, 7, 11, 15], 9)); // Should output [0, 1]
+// console.log(twoSum([3, 2, 4], 6)); // Should output [1, 2]
+// console.log(twoSum([3, 3], 6)); // Should output [0, 1]`
+//     }
+//   },
   {
     id: 4,
-    title: "Algorithm: Array Manipulation",
-    description: "Write a function that finds the two numbers in an array that add up to a target value.",
-    difficulty: "Medium",
-    category: "Algorithms",
-    template: "node", // Single template
-    starterCode: {
-      '/index.js': `/**
- * @param {number[]} nums
- * @param {number} target
- * @return {number[]} - indices of the two numbers that add up to target
- */
-function twoSum(nums, target) {
-  // TODO: Implement the twoSum function
-  
-}
-
-// Test cases
-console.log(twoSum([2, 7, 11, 15], 9)); // Should output [0, 1]
-console.log(twoSum([3, 2, 4], 6)); // Should output [1, 2]
-console.log(twoSum([3, 3], 6)); // Should output [0, 1]`
-    }
-  },
-  {
-    id: 5,
     title: "State Management with Context API",
     description: "Create a theme switcher using React's Context API.",
     difficulty: "Hard",
@@ -359,10 +359,7 @@ const InterviewPage = () => {
 
   // Function to go back to the question list from question view
   const backToList = () => {
-    if (window.confirm('Are you sure you want to leave? Your progress will be saved but not submitted.')) {
-      setViewMode('list');
-      setCurrentQuestionIndex(null);
-    }
+    setShowSubmitDialog(true)
   };
 
   // Function to render the appropriate code editor based on the question's template

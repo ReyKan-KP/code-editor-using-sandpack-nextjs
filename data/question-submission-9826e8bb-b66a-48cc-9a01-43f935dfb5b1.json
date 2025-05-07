@@ -1,0 +1,23 @@
+{
+  "sessionId": "9826e8bb-b66a-48cc-9a01-43f935dfb5b1",
+  "startTime": "2025-05-07T17:29:08.248Z",
+  "submissions": {
+    "4": {
+      "questionId": 4,
+      "questionTitle": "Algorithm: Array Manipulation",
+      "questionDescription": "Write a function that finds the two numbers in an array that add up to a target value.",
+      "template": "node",
+      "submitted": true,
+      "submissionDate": "2025-05-07T17:29:07.521Z",
+      "files": {
+        "/index.js": {
+          "code": "/**\n * @param {number[]} nums\n * @param {number} target\n * @return {number[]} - indices of the two numbers that add up to target\n */\nfunction twoSum(nums, target) {\n  // TODO: Implement the twoSum function\n  \n}\n\n// Test cases\nconsole.log(twoSum([2, 7, 11, 15], 9)); // Should output [0, 1]\nconsole.log(twoSum([3, 2, 4], 6)); // Should output [1, 2]\nconsole.log(twoSum([3, 3], 6)); // Should output [0, 1]"
+        },
+        "/package.json": {
+          "code": "{\n  \"dependencies\": {},\n  \"scripts\": {\n    \"start\": \"node index.js\"\n  },\n  \"main\": \"/index.js\",\n  \"devDependencies\": {}\n}"
+        }
+      }
+    }
+  },
+  "lastUpdated": "2025-05-07T17:29:08.249Z"
+}

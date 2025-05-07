@@ -1,0 +1,63 @@
+{
+  "sessionId": "5ef6e062-01e5-4e51-b7ff-06b9d4f3d158",
+  "startTime": "2025-05-07T17:38:26.236Z",
+  "submissions": {
+    "3": {
+      "questionId": 3,
+      "questionTitle": "Todo List Application",
+      "questionDescription": "Create a simple Todo List application with add, toggle, and delete functionality.",
+      "template": "react-ts",
+      "submitted": true,
+      "submissionDate": "2025-05-07T17:38:40.220Z",
+      "files": {
+        "/styles.css": {
+          "code": "body {\n  font-family: sans-serif;\n  -webkit-font-smoothing: auto;\n  -moz-font-smoothing: auto;\n  -moz-osx-font-smoothing: grayscale;\n  font-smoothing: auto;\n  text-rendering: optimizeLegibility;\n  font-smooth: always;\n  -webkit-tap-highlight-color: transparent;\n  -webkit-touch-callout: none;\n}\n\nh1 {\n  font-size: 1.5rem;\n}"
+        },
+        "/tsconfig.json": {
+          "code": "{\n  \"include\": [\n    \"./**/*\"\n  ],\n  \"compilerOptions\": {\n    \"strict\": true,\n    \"esModuleInterop\": true,\n    \"lib\": [ \"dom\", \"es2015\" ],\n    \"jsx\": \"react-jsx\"\n  }\n}"
+        },
+        "/App.tsx": {
+          "code": "// TODO: Implement a theme switcher with Context API\n// Create a ThemeContext with light/dark mode and a toggle function\n// Use proper TypeScript interfaces\n\nexport default function App() {\n  return (\n    <div>\n      <h1>Theme Switcher</h1>\n      <button>Toggle Theme</button>\n      <Content />\n    </div>\n  );\n}\n\nfunction Content() {\n  return (\n    <div>\n      <p>This content should change based on the current theme.</p>\n    </div>\n  );\n}"
+        },
+        "/index.tsx": {
+          "code": "import React, { StrictMode } from \"react\";\nimport { createRoot } from \"react-dom/client\";\nimport \"./styles.css\";\n\nimport App from \"./App\";\n\nconst root = createRoot(document.getElementById(\"root\"));\nroot.render(\n  <StrictMode>\n    <App />\n  </StrictMode>\n);"
+        },
+        "/public/index.html": {
+          "code": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Document</title>\n  </head>\n  <body>\n    <div id=\"root\"></div>\n  </body>\n</html>"
+        },
+        "/package.json": {
+          "code": "{\n  \"dependencies\": {\n    \"react\": \"^19.0.0\",\n    \"react-dom\": \"^19.0.0\",\n    \"react-scripts\": \"^4.0.0\"\n  },\n  \"devDependencies\": {\n    \"@types/react\": \"^19.0.0\",\n    \"@types/react-dom\": \"^19.0.0\",\n    \"typescript\": \"^4.0.0\"\n  },\n  \"main\": \"/index.tsx\"\n}"
+        }
+      }
+    },
+    "4": {
+      "questionId": 4,
+      "questionTitle": "State Management with Context API",
+      "questionDescription": "Create a theme switcher using React's Context API.",
+      "template": "react-ts",
+      "submitted": true,
+      "submissionDate": "2025-05-07T17:38:25.522Z",
+      "files": {
+        "/styles.css": {
+          "code": "body {\n  font-family: sans-serif;\n  -webkit-font-smoothing: auto;\n  -moz-font-smoothing: auto;\n  -moz-osx-font-smoothing: grayscale;\n  font-smoothing: auto;\n  text-rendering: optimizeLegibility;\n  font-smooth: always;\n  -webkit-tap-highlight-color: transparent;\n  -webkit-touch-callout: none;\n}\n\nh1 {\n  font-size: 1.5rem;\n}"
+        },
+        "/tsconfig.json": {
+          "code": "{\n  \"include\": [\n    \"./**/*\"\n  ],\n  \"compilerOptions\": {\n    \"strict\": true,\n    \"esModuleInterop\": true,\n    \"lib\": [ \"dom\", \"es2015\" ],\n    \"jsx\": \"react-jsx\"\n  }\n}"
+        },
+        "/App.tsx": {
+          "code": "// TODO: Implement a theme switcher with Context API\n// Create a ThemeContext with light/dark mode and a toggle function\n// Use proper TypeScript interfaces\n\nexport default function App() {\n  return (\n    <div>\n      <h1>Theme Switcher</h1>\n      <button>Toggle Theme</button>\n      <Content />\n    </div>\n  );\n}\n\nfunction Content() {\n  return (\n    <div>\n      <p>This content should change based on the current theme.</p>\n    </div>\n  );\n}"
+        },
+        "/index.tsx": {
+          "code": "import React, { StrictMode } from \"react\";\nimport { createRoot } from \"react-dom/client\";\nimport \"./styles.css\";\n\nimport App from \"./App\";\n\nconst root = createRoot(document.getElementById(\"root\"));\nroot.render(\n  <StrictMode>\n    <App />\n  </StrictMode>\n);"
+        },
+        "/public/index.html": {
+          "code": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\">\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n    <title>Document</title>\n  </head>\n  <body>\n    <div id=\"root\"></div>\n  </body>\n</html>"
+        },
+        "/package.json": {
+          "code": "{\n  \"dependencies\": {\n    \"react\": \"^19.0.0\",\n    \"react-dom\": \"^19.0.0\",\n    \"react-scripts\": \"^4.0.0\"\n  },\n  \"devDependencies\": {\n    \"@types/react\": \"^19.0.0\",\n    \"@types/react-dom\": \"^19.0.0\",\n    \"typescript\": \"^4.0.0\"\n  },\n  \"main\": \"/index.tsx\"\n}"
+        }
+      }
+    }
+  },
+  "lastUpdated": "2025-05-07T17:38:40.237Z"
+}
