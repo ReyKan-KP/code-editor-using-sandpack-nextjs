@@ -1,8 +1,31 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Code Editor Using Sandpack & Next.js
+
+A powerful in-browser code editor built with Next.js and Sandpack that allows you to write, run, and preview code directly in your browser.
+
+![Code Editor Screenshot](public/screenshot.png)
+
+## Features
+
+- **Multiple Templates**: Choose from various templates including React, React TypeScript, Vue, Angular, Node.js, and more
+- **File Explorer**: Navigate, create and manage files and folders
+- **Code Editor**: Syntax highlighting and autocompletion
+- **Live Preview**: See your changes in real-time
+- **Auto-save**: Your code is automatically saved in the browser's localStorage
+- **Reset Functionality**: Easily reset to the original template code
 
 ## Getting Started
 
-First, run the development server:
+First, install the dependencies:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
@@ -10,27 +33,27 @@ npm run dev
 yarn dev
 # or
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the code editor.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Usage
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Switch Templates**: Use the dropdown menu in the preview panel to switch between different templates
+2. **Create Files**: Click the "New File" button in the file explorer and enter the file path/name
+3. **Create Folders**: Click the "New Folder" button and enter the folder path
+4. **Edit Code**: Use the code editor to write and edit your code
+5. **Reset Template**: Click the reset button to restore the original template code
 
-## Learn More
+## Technologies Used
 
-To learn more about Next.js, take a look at the following resources:
+- [Next.js](https://nextjs.org/) - React framework
+- [Sandpack](https://sandpack.codesandbox.io/) - In-browser bundler and runtime
+- [CodeMirror](https://codemirror.net/) - Text editor component (via Sandpack)
+- [Tailwind CSS](https://tailwindcss.com/) - CSS framework
+- [Lucide Icons](https://lucide.dev/) - Icon library
+- [Shadcn UI](https://ui.shadcn.com/) - UI components
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+[MIT](LICENSE)
