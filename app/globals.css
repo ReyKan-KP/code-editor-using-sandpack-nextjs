@@ -120,3 +120,26 @@
     @apply bg-background text-foreground;
   }
 }
+/* Change background and text color of the autocomplete suggestion box */
+.cm-tooltip-autocomplete {
+  background: #232326 !important; /* Your desired background */
+  color: #e0e0e0 !important;      /* Your desired text color */
+  border: 1px solid #444;
+}
+
+/* Change color of the suggestion text */
+.cm-tooltip-autocomplete .cm-completionLabel {
+  color: #e0e0e0 !important;      /* Your desired text color */
+}
+
+/* Highlight the matched text in suggestions */
+.cm-tooltip-autocomplete .cm-completionMatchedText {
+  color: #ffd700 !important;      /* Highlight color */
+  font-weight: bold;
+}
+
+/* Change background of the selected suggestion */
+.cm-tooltip-autocomplete .cm-completionIcon,
+.cm-tooltip-autocomplete .cm-completionLabel[aria-selected="true"] {
+  background: #333 !important;
+}

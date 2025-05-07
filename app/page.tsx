@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import {
   SandpackProvider,
   SandpackLayout,
@@ -28,7 +28,8 @@ import {
   FolderPlus,
   FilePlus,
   X,
-  Check
+  Check,
+  RotateCcw
 } from 'lucide-react';
 import { TemplateType, TemplateConfig } from '@/types/sandpack';
 import { autocompletion, completionKeymap } from "@codemirror/autocomplete";
@@ -332,9 +333,103 @@ const FileExplorerWithControls = () => {
   );
 };
 
+// Add this hook to handle auto-saving and loading from localStorage
+const usePersistentSandpack = (initialTemplate: TemplateType) => {
+  const [activeTemplate, setActiveTemplate] = useState<TemplateType>(initialTemplate);
+  const [files, setFiles] = useState(templates[initialTemplate].files);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  // Load saved state on initial render
+  useEffect(() => {
+    try {
+      const savedTemplate = localStorage.getItem('sandpack-template');
+      const savedFiles = localStorage.getItem('sandpack-files');
+      
+      if (savedTemplate && savedFiles) {
+        // Validate that the template exists in our templates object
+        const validTemplate = Object.keys(templates).includes(savedTemplate) 
+          ? savedTemplate as TemplateType 
+          : initialTemplate;
+        
+        setActiveTemplate(validTemplate);
+        setFiles(JSON.parse(savedFiles));
+      }
+    } catch (error) {
+      console.error('Error loading from localStorage:', error);
+    } finally {
+      setIsLoaded(true);
+    }
+  }, [initialTemplate]);
+
+  // Return current state for initial render
+  if (!isLoaded) {
+    return { 
+      activeTemplate, 
+      setActiveTemplate, 
+      files, 
+      setFiles,
+      isLoaded 
+    };
+  }
+
+  return { 
+    activeTemplate, 
+    setActiveTemplate, 
+    files, 
+    setFiles,
+    isLoaded 
+  };
+};
+
+// Add component to handle auto-saving
+const AutoSave = () => {
+  const { sandpack } = useSandpack();
+  
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // Save files to localStorage every second
+      const files = sandpack.files;
+      localStorage.setItem('sandpack-files', JSON.stringify(files));
+      // Get active template from localStorage instead
+      const currentTemplate = localStorage.getItem('sandpack-template');
+      if (currentTemplate) {
+        // Only save if it exists already (it should from the dropdown)
+        localStorage.setItem('sandpack-template', currentTemplate);
+      }
+    }, 1000);
+    
+    return () => clearInterval(interval);
+  }, [sandpack]);
+  
+  return null;
+};
+
 const CodeEditor = () => {
-  const [activeTemplate, setActiveTemplate] = useState<TemplateType>('react');
+  const { 
+    activeTemplate, 
+    setActiveTemplate, 
+    files, 
+    setFiles,
+    isLoaded 
+  } = usePersistentSandpack('react');
   const [showConsole, setShowConsole] = useState(false);
+
+  const handleReset = useCallback(() => {
+    if (window.confirm('Are you sure you want to reset to the original template? All changes will be lost.')) {
+      // Reset to the original template files
+      setFiles(templates[activeTemplate].files);
+      
+      // Clear localStorage
+      localStorage.removeItem('sandpack-files');
+      
+      // Keep the current template but reset its files
+      localStorage.setItem('sandpack-template', activeTemplate);
+    }
+  }, [activeTemplate, setFiles]);
+
+  if (!isLoaded) {
+    return <div className="h-screen w-screen flex items-center justify-center">Loading...</div>;
+  }
 
   return (
     <div className="h-screen w-screen flex flex-col bg-background">
@@ -342,11 +437,19 @@ const CodeEditor = () => {
       <SandpackProvider
         template={templates[activeTemplate].template}
         theme={sandpackDark}
-        files={templates[activeTemplate].files}
+        files={files}
         customSetup={{
           dependencies: templates[activeTemplate].dependencies || {},
         }}
+        options={{
+          experimental_enableServiceWorker: true,
+          recompileMode: "delayed",
+          recompileDelay: 500,
+          autorun: true,
+          autoReload: true
+        }}
       >
+        <AutoSave />
         <SandpackLayout className="flex-1 flex flex-row bg-background h-[100vh]">
           {/* File Explorer */}
           <div className="w-56 border-r bg-card h-[100vh] min-h-0 flex-shrink-0">
@@ -356,16 +459,28 @@ const CodeEditor = () => {
           <div className="flex-1 min-h-[100vh] border- flex flex-col">
             <div className="text-xs font-semibold text-gray-400 px-2 tracking-wide text-center bg-[#18181b] h-19 flex items-center justify-between ">
               <span className="flex-1 text-center">Code Editor</span>
-              <Button
-                variant={showConsole ? 'secondary' : 'outline'}
-                size="icon"
-                className="ml-2 border-1 border-gray-700 bg-[#18181b] hover:bg-[#18181b] text-white hover:text-white "
-                title={showConsole ? 'Hide Console' : 'Show Console'}
-                aria-label="Toggle Console"
-                onClick={() => setShowConsole((prev) => !prev)}
-              >
-                <Terminal className="h-4 w-4" />
-              </Button>
+              <div className="flex space-x-2">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  className="ml-2 border-1 border-gray-700 bg-[#18181b] hover:bg-[#232326] text-white hover:text-white"
+                  title="Reset to original template"
+                  aria-label="Reset to original template"
+                  onClick={handleReset}
+                >
+                  <RotateCcw className="h-4 w-4" />
+                </Button>
+                {/* <Button
+                  variant={showConsole ? 'secondary' : 'outline'}
+                  size="icon"
+                  className="border-1 border-gray-700 bg-[#18181b] hover:bg-[#232326] text-white hover:text-white"
+                  title={showConsole ? 'Hide Console' : 'Show Console'}
+                  aria-label="Toggle Console"
+                  onClick={() => setShowConsole(prev => !prev)}
+                >
+                  <Terminal className="h-4 w-4" />
+                </Button> */}
+              </div>
             </div>
             <hr className="w-full border-t border-gray-700" />
             <div className={`flex-1 flex flex-col transition-all duration-200 ${showConsole ? 'h-1/2' : 'h-full'}`}> 
@@ -373,7 +488,8 @@ const CodeEditor = () => {
                 <SandpackCodeEditor
                   showLineNumbers
                   showInlineErrors
-                  closableTabs showTabs
+                  closableTabs 
+                  showTabs
                   wrapContent
                   extensions={[autocompletion()]}
                   extensionsKeymap={[...completionKeymap]}
@@ -382,48 +498,60 @@ const CodeEditor = () => {
                     maxHeight: '100%',
                     overflow: 'auto',
                   }}
+                  key="code-editor"
                 />
               </div>
-              {showConsole && (
+              {/* {showConsole && (
                 <div className="h-64 border-t border-gray-700 bg-[#18181b]">
                   <div className="text-xs font-semibold text-gray-400 px-2 tracking-wide text-center bg-[#18181b] h-10 flex items-center justify-between">
                     <span className="flex-1 text-center">Console</span>
-                    
                   </div>
-                  <SandpackConsole style={{ height: '100%' }}  showSyntaxError showResetConsoleButton showRestartButton actionsChildren />
+                  <SandpackConsole 
+                    // style={{ height: '100%' }} 
+                  />
                 </div>
-              )}
+              )} */}
             </div>
           </div>
           {/* Preview */}
           <div className="w-[40vw] h-[100vh] bg-card">
-          <div className="text-xs font-semibold text-gray-400 px-2 tracking-wide text-center bg-[#18181b] h-19 flex items-center justify-between">
-            <div className="flex-1 text-center">Preview</div>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="gap-2 bg-[#18181b] hover:bg-gray-700] hover:text-white">
-                  Template: {activeTemplate}
-                  <ChevronDown className="h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-[200px] bg-[#18181b] text-white">
-                {Object.keys(templates).map((template) => (
-                  <DropdownMenuItem
-                    key={template}
-                    onClick={() => setActiveTemplate(template as TemplateType)}
-                    className="hover:bg-gray-700 hover:text-white"
+            <div className="text-xs font-semibold text-gray-400 px-2 tracking-wide text-center bg-[#18181b] h-19 flex items-center justify-between">
+              <div className="flex-1 text-center">Preview</div>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button 
+                    variant="outline" 
+                    className="gap-2 bg-[#18181b] hover:bg-gray-700] hover:text-white"
+                    onClick={() => {
+                      // Save current template selection to localStorage
+                      localStorage.setItem('sandpack-template', activeTemplate);
+                      
+                    }}
                   >
-                    {template}
-                  </DropdownMenuItem>
-                ))}
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </div>
+                    Template: {activeTemplate}
+                    <ChevronDown className="h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end" className="w-[200px] bg-[#18181b] text-white">
+                  {Object.keys(templates).map((template) => (
+                    <DropdownMenuItem
+                      key={template}
+                      onClick={() => {
+                        setActiveTemplate(template as TemplateType);
+                        localStorage.setItem('sandpack-template', template);
+                        handleReset();
+                      }}
+                      className="hover:bg-gray-700 hover:text-white"
+                    >
+                      {template}
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
             <hr className="w-full border-t border-gray-700" />
             <SandpackPreview style={{ height: '100%' }} />
-            
           </div>
-
         </SandpackLayout>
       </SandpackProvider>
     </div>
